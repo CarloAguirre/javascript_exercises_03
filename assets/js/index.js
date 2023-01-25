@@ -56,9 +56,10 @@ const propiedadesJSON = [
 
   //PRIMERA RENDERIZACION DE PROPIEDADES //
   let propiedadesContainer = document.getElementById("propiedadesContainer");
+  let propiedadesCards = "";
 
   for(let propiedad of propiedadesJSON){
-    propiedadesContainer.innerHTML += `<div class="propiedad">
+    propiedadesCards += `<div class="propiedad">
                                         <div class="img" style="background-image: url(${propiedad.src})"></div>
                                         <section>
                                             <h5>${propiedad.name}</h5>
@@ -71,7 +72,7 @@ const propiedadesJSON = [
                                         </section>
                                     </div>`
   }
-
+  propiedadesContainer.innerHTML = propiedadesCards;
 
 // APLICACIÓN DE FILTROS DE BUSQUEDA Y NUEVA RENDERIZACIÓN //
 let roomsNumber = document.getElementById("Rooms");
@@ -83,11 +84,11 @@ let onClickForm = ()=>{
   let nuevoTotalPropiedades = 0;
 
   if(roomsNumber.value && minMetros.value && maxMetros.value){
-    propiedadesContainer.innerHTML = "";
+    propiedadesCards = "";
     for(let propiedad of propiedadesJSON){
       if(propiedad.rooms === Number(roomsNumber.value) && propiedad.m >= Number(minMetros.value) && propiedad.m <= Number(maxMetros.value)){
         nuevoTotalPropiedades +=1;
-        propiedadesContainer.innerHTML += `<div class="propiedad">
+        propiedadesCards += `<div class="propiedad">
                                             <div class="img" style="background-image: url(${propiedad.src})"></div>
                                             <section>
                                                 <h5>${propiedad.name}</h5>
@@ -106,4 +107,5 @@ let onClickForm = ()=>{
     alert("Faltan campos por llenar");
     return;
   }
+  propiedadesContainer.innerHTML = propiedadesCards;
 }
