@@ -79,8 +79,9 @@ let roomsNumber = document.getElementById("Rooms");
 let minMetros = document.getElementById("MinMetros");
 let maxMetros = document.getElementById("MaxMetros");
 
+let botonBuscar = document.getElementById("btnBuscar")
 
-let onClickForm = ()=>{
+botonBuscar.addEventListener("click", ()=>{
   let nuevoTotalPropiedades = 0;
 
   if(roomsNumber.value && minMetros.value && maxMetros.value){
@@ -108,4 +109,4 @@ let onClickForm = ()=>{
     return;
   }
   propiedadesContainer.innerHTML = propiedadesCards;
-}
+})
