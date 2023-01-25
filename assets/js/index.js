@@ -48,16 +48,14 @@ const propiedadesJSON = [
       m: 500,
     }
   ];
-  
   // NUMERO TOTAL DEL PROPIEDADES EN LA PRIMERA RENDERIZACIÓN //
   let propiedadesJSONLength = propiedadesJSON.length;
 
-  let totalPropiedades = document.getElementById("TotalPropiedades")
+  let totalPropiedades = document.getElementById("TotalPropiedades");
   totalPropiedades.innerHTML = `<h4 class="py-3">Total: <span>${propiedadesJSONLength}</span></h4>`;
 
-
   //PRIMERA RENDERIZACION DE PROPIEDADES //
-  let propiedadesContainer = document.getElementById("propiedadesContainer")
+  let propiedadesContainer = document.getElementById("propiedadesContainer");
 
   for(let propiedad of propiedadesJSON){
     propiedadesContainer.innerHTML += `<div class="propiedad">
@@ -84,7 +82,7 @@ let maxMetros = document.getElementById("MaxMetros");
 let onClickForm = ()=>{
   let nuevoTotalPropiedades = 0;
 
-  if(roomsNumber.value, minMetros.value, maxMetros.value){
+  if(roomsNumber.value && minMetros.value && maxMetros.value){
     propiedadesContainer.innerHTML = "";
     for(let propiedad of propiedadesJSON){
       if(propiedad.rooms === Number(roomsNumber.value) && propiedad.m >= Number(minMetros.value) && propiedad.m <= Number(maxMetros.value)){
@@ -105,7 +103,7 @@ let onClickForm = ()=>{
       totalPropiedades.innerHTML = `<h4 class="py-3">Total: <span>${nuevoTotalPropiedades}</span></h4>`;
       }
   }else{
-    alert("Faltan campos por llenar")
+    alert("Faltan campos por llenar");
     return;
   }
 }
