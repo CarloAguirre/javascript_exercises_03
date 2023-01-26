@@ -58,19 +58,23 @@ const propiedadesJSON = [
   let propiedadesContainer = document.getElementById("propiedadesContainer");
   let propiedadesCards = "";
 
+  let card = (propiedad)=>{
+    return `<div class="propiedad">
+    <div class="img" style="background-image: url(${propiedad.src})"></div>
+    <section>
+        <h5>${propiedad.name}</h5>
+        <div class="d-flex justify-content-between">
+            <p>Cuartos: ${propiedad.rooms}</p>
+            <p>Metros: ${propiedad.m}</p>
+        </div>
+        <p class="my-3">${propiedad.description}</p>
+        <button class="btn btn-info ">Ver más</button>         
+    </section>
+  </div>`
+  }
+
   for(let propiedad of propiedadesJSON){
-    propiedadesCards += `<div class="propiedad">
-                                        <div class="img" style="background-image: url(${propiedad.src})"></div>
-                                        <section>
-                                            <h5>${propiedad.name}</h5>
-                                            <div class="d-flex justify-content-between">
-                                                <p>Cuartos: ${propiedad.rooms}</p>
-                                                <p>Metros: ${propiedad.m}</p>
-                                            </div>
-                                            <p class="my-3">${propiedad.description}</p>
-                                            <button class="btn btn-info ">Ver más</button>         
-                                        </section>
-                                    </div>`
+    propiedadesCards += card(propiedad);
   }
   propiedadesContainer.innerHTML = propiedadesCards;
 
@@ -89,18 +93,7 @@ botonBuscar.addEventListener("click", ()=>{
     for(let propiedad of propiedadesJSON){
       if(propiedad.rooms === Number(roomsNumber.value) && propiedad.m >= Number(minMetros.value) && propiedad.m <= Number(maxMetros.value)){
         nuevoTotalPropiedades +=1;
-        propiedadesCards += `<div class="propiedad">
-                                            <div class="img" style="background-image: url(${propiedad.src})"></div>
-                                            <section>
-                                                <h5>${propiedad.name}</h5>
-                                                <div class="d-flex justify-content-between">
-                                                    <p>Cuartos: ${propiedad.rooms}</p>
-                                                    <p>Metros: ${propiedad.m}</p>
-                                                </div>
-                                                <p class="my-3">${propiedad.description}</p>
-                                                <button class="btn btn-info ">Ver más</button>         
-                                            </section>
-                                        </div>`
+        propiedadesCards += card(propiedad)
       }
       totalPropiedades.innerHTML = `<h4 class="py-3">Total: <span>${nuevoTotalPropiedades}</span></h4>`;
       }
